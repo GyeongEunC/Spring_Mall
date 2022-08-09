@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mall.domain.CategoryVO;
+import com.mall.domain.GoodsVO;
 import com.mall.service.AdminService;
 
 import lombok.extern.log4j.Log4j;
@@ -37,6 +38,15 @@ public class AdminController {
 		List<CategoryVO> category = null;
 		category = adminService.category();
 		model.addAttribute("category", JSONArray.fromObject(category));
+	}
+	
+	// 상품등록_post
+	@RequestMapping(value = "/goods/register", method = RequestMethod.POST)
+	public String postGoodsRegister(GoodsVO vo) throws Exception {
+		log.info("post goods_Register");
+		adminService.register(vo);
+		
+		return "redirect:/admin/index";
 	}
 
 }
