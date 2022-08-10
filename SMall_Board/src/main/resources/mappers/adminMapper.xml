@@ -12,8 +12,9 @@
 
 <!-- 상품등록 -->
 <insert id="register">
-	insert into goods(gdsNum, gdsName, cateCode, gdsPrice, gdsStock, gdsDes)
-	values(goods_seq.nextval, #{gdsName}, #{cateCode}, #{gdsPrice}, #{gdsStock}, #{gdsDes})
+	insert into goods(gdsNum, gdsName, cateCode, gdsPrice, gdsStock, gdsDes, gdsImg, gdsThumbImg)
+	values(goods_seq.nextval, #{gdsName}, #{cateCode}, #{gdsPrice}, #{gdsStock}, #{gdsDes}, 
+		#{gdsImg}, #{gdsThumbImg})
 </insert>
 
 <!-- 상품리스트 -->
@@ -30,7 +31,8 @@
 <!-- 상품 상세페이지(조회) + 카테고리 조인 -->
 <select id="goodsView" resultType="com.mall.domain.GoodsViewVO">
 	select
-		g.gdsNum, g.gdsName, g.cateCode, c.cateCodeRef, c.cateName, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate
+		g.gdsNum, g.gdsName, g.cateCode, c.cateCodeRef, c.cateName, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate,
+		g.gdsImg, g.gdsThumbImg
 	from goods g
 	inner join goods_category c
 		on g.cateCode = c.cateCode

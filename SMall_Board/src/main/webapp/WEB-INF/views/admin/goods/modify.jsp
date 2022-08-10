@@ -75,8 +75,8 @@ aside {
 
 div#container_box {
 	float: right;
-	/* 	width: cale(100% -200px-20px); */
-	margin: 10px +210px 10px 0px;
+/*  width: cale(100% -200px-20px); */
+	margin: 5px +670px 5px 0px;
 }
 
 aside ul li {
@@ -136,7 +136,7 @@ textarea#gdsDes {
 
 button[type=submit] {
 	width: 100px;
-	height: 30px;
+	height: 38px;
 	background-color: #b7b7ff;
 	border: 1px solid #FFFFFF;
 	border-radius: 30px;

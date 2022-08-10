@@ -77,8 +77,8 @@ aside {
 
 div#container_box {
 	float: right;
-/* 	width: cale(100% -200px-20px); */
-	margin: 10px +105px 10px 0px;
+/*  width: cale(100% -200px-20px); */
+	margin: 5px +505px 5px 0px;
 }
 
 aside ul li {
@@ -110,7 +110,7 @@ footer#footer ul li {
 
 <style>
 #container_box table td {
-	width: 141px;
+	width: 153px;
 }
 </style>
 

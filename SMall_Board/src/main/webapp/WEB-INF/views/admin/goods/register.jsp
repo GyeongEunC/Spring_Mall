@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>Register</title>
+<title> Register </title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -74,8 +74,8 @@ aside {
 
 div#container_box {
 	float: right;
-/* 	width: cale(100% -200px-20px); */
-	margin: 10px +180px 10px 0px;
+/*  width: cale(100% -200px-20px); */
+	margin: 5px +530px 5px 0px;
 }
 
 aside ul li {
@@ -130,6 +130,9 @@ button[type=submit] {
 	border-radius: 30px;
 	box-shadow: 5px 5px 5px #8080ff;
 }
+.select_img img {
+	margin: 20px 0px;
+}
 </style>
 
 </head>
@@ -156,16 +159,16 @@ button[type=submit] {
 			<div id="container_box">
 				<h2> 상품등록 </h2>
 
-				<form role="form" method="post" autocomplete="off">
+				<form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
 				
 				<div class="inputArea">
 
-					<label> 1차 </label> 
+					<label> 1차 카테고리 </label> 
 						<select class="category1">
 							<option value=""> 전체 </option>
 						</select>
 						
-					<label> 2차 </label> 
+					<label> 2차 카테고리 </label> 
 						<select class="category2" name="cateCode">
 							<option value=""> 전체 </option>
 						</select>
@@ -192,7 +195,27 @@ button[type=submit] {
 				</div>
 				
 				<div class="inputArea">
-					<button type="submit" id="register_Btn"> 등록 </button>
+					<label for="gdsImg"> 이미지 </label>
+					<input type="file" id="gdsImg" name="file" />
+					<div class="select_img"><img src="" /></div>
+					
+					<script>
+						$("#gdsImg").change(function() {
+							if(this.files && this.files[0]) {
+								var reader = new FileReader;
+								reader.onload = function(data) {
+									$(".select_img img").attr("src", data.target.result).width(500);
+								}
+								reader.readAsDataURL(this.files[0]);
+							}
+						});
+					</script>
+					
+					<%= request.getRealPath("/") %>
+				</div>
+				
+				<div class="inputArea">
+					<button type="submit" id="register_Btn" class="btn btn-primary"> 등록 </button>
 				</div>
 					
 				</form>

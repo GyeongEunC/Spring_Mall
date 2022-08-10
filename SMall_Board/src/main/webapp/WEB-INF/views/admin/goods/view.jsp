@@ -75,8 +75,8 @@ aside {
 
 div#container_box {
 	float: right;
-/* 	width: cale(100% -200px-20px); */
-	margin: 10px +438px 10px 0px;
+/*  width: cale(100% -200px-20px); */
+	margin: 5px +550px 5px 0px;
 }
 
 aside ul li {
@@ -123,6 +123,18 @@ input {
 textarea#gdsDes {
 	width: 400px; height: 180px;
 }
+button[type=button] {
+	width: 100px;
+	height: 38px;
+	background-color: #b7b7ff;
+	border: 1px solid #FFFFFF;
+	border-radius: 30px;
+	box-shadow: 5px 5px 5px #8080ff;
+}
+.oriImg {
+	width: 500px; height: auto;
+}
+.thumbImg {}
 </style>
 
 </head>
@@ -147,7 +159,7 @@ textarea#gdsDes {
 			</aside>
 
 			<div id="container_box">
-				<h2> 상품등록 </h2>
+				<h2> 상품 상세페이지 </h2>
 
 				<form role="form" method="post" autocomplete="off">
 				
@@ -179,6 +191,15 @@ textarea#gdsDes {
 				<div class="inputArea">
 					<label for="gdsDes"> 상품소개 </label>
 					<span> ${goods.gdsDes} </span>
+				</div>
+				
+				<div class="inputArea">
+					<label for="gdsImg"> 이미지 </label>
+ 						<p> 원본 이미지 </p>
+ 						<img src="${goods.gdsImg}" class="oriImg" />
+ 
+ 						<p> 썸네일 </p>
+ 						<img src="${goods.gdsThumbImg}" class="thumbImg" />
 				</div>
 				
 				<div class="inputArea">
