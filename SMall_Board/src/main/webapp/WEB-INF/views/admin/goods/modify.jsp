@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title> 상품 수정 </title>
+<title> 상품수정 </title>
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -170,34 +170,31 @@ button[type=submit] {
 
 				<form role="form" method="post" autocomplete="off">
 
-				<input type="hidden" name="n" value="" />
+					<input type="hidden" name="n" value="" />
 
 					<div class="inputArea">
 
-						<label> 1차 카테고리 </label>
-						<select class="category1">
-							<option value=""> 전체 </option>
-						</select> 
-						
-						<label> 2차 카테고리 </label>
-						<select class="category2" name="cateCode">
-							<option value=""> 전체 </option>
+						<label> 1차 카테고리 </label> <select class="category1">
+							<option value="">전체</option>
+						</select> <label> 2차 카테고리 </label> <select class="category2"
+							name="cateCode">
+							<option value="">전체</option>
 						</select>
 					</div>
 
 					<div class="inputArea">
-						<label for="gdsName"> 상품명 </label>
-						<input type="text" id="gdsName" name="gdsName" value="${goods.gdsName}" />
+						<label for="gdsName"> 상품명 </label> <input type="text" id="gdsName"
+							name="gdsName" value="${goods.gdsName}" />
 					</div>
 
 					<div class="inputArea">
-						<label for="gdsPrice"> 상품가격 </label>
-						<input type="text" id="gdsPrice" name="gdsPrice" value="${goods.gdsPrice}" />
+						<label for="gdsPrice"> 상품가격 </label> <input type="text"
+							id="gdsPrice" name="gdsPrice" value="${goods.gdsPrice}" />
 					</div>
 
 					<div class="inputArea">
-						<label for="gdsStock"> 상품수량 </label>
-						<input type="text" id="gdsStock" name="gdsStock" value="${goods.gdsStock}" />
+						<label for="gdsStock"> 상품수량 </label> <input type="text"
+							id="gdsStock" name="gdsStock" value="${goods.gdsStock}" />
 					</div>
 
 					<div class="inputArea">
@@ -206,14 +203,20 @@ button[type=submit] {
 					</div>
 
 					<div class="inputArea">
-						<button type="submit" id="update_Btn" class="btn btn-primary"> 완료</button>
-						<button type="submit" id="back_Btn" class="btn btn-warning"> 취소</button>
+						<button type="submit" id="update_Btn" class="btn btn-primary">
+							완료</button>
+						<button type="submit" id="back_Btn" class="btn btn-warning">
+							취소</button>
 
 						<script>
 							$("#back_Btn").click(function() {
 								// 	histroy.back();
 								//	뒤로가기 코드	
-								location.href = "/admin/goods/view?n=" + ${goods.gdsNum};
+								location.href = "/admin/goods/view?n=" + $
+								{
+									goods.gdsNum
+								}
+								;
 							});
 						</script>
 					</div>
@@ -257,10 +260,11 @@ button[type=submit] {
 		}
 
 		$(document).on("change", "select.category1", function() {
-
-		var cate2Arr = new Array();
+							
+		var cate2Arr = new Array();					
 		var cate2Obj = new Object();
 
+							
 		// 2차 분류 셀렉트 박스에 삽입할 데이터 준비
 		for (var i = 0; i < jsonData.length; i++) {
 
@@ -278,33 +282,68 @@ button[type=submit] {
 
 		$("option:selected", this).each( function() {
 
-			var selectVal = $(this).val();
-			cate2Select.append("<option value='" + selectVal +"'>전체</option>");
+												
+		var selectVal = $(this).val();
+												
+		cate2Select
+													
+		.append("<option value='" + selectVal +"'>전체</option>");
 
-			for (var i = 0; i < cate2Arr.length; i++) {
-				if (selectVal == cate2Arr[i].cateCodeRef) {
-					cate2Select.append("<option value='" + cate2Arr[i].cateCode + "'>"
-							+ cate2Arr[i].cateName + "</option>");
-					}
+		for (var i = 0; i < cate2Arr.length; i++) {												
+			if (selectVal == cate2Arr[i].cateCodeRef) {										
+				cate2Select.append("<option value='" + cate2Arr[i].cateCode + "'>"
+					+ cate2Arr[i].cateName + "</option>");
 				}
-			});
+			}
 		});
-		
+	});
+
 		var select_cateCode = '${goods.cateCode}';
 		var select_cateCodeRef = '${goods.cateCodeRef}';
 		var select_cateName = '${goods.cateName}';
 
-		if(select_cateCodeRef != null && select_cateCodeRef != '') {
-		 $(".category1").val(select_cateCodeRef); 
-		 $(".category2").val(select_cateCode); 
-		 $(".category2").children().remove();
-		 $(".category2").append("<option value='"
-		       + select_cateCode + "'>" + select_cateName + "</option>"); 
+		if (select_cateCodeRef != null && select_cateCodeRef != '') {
+			$(".category1").val(select_cateCodeRef);
+			$(".category2").children().remove();
+			$(".category2").append(
+					"<option value='" + select_cateCodeRef + "'>전체</option>");
+
+			var cate2Arr = new Array();
+			var cate2Obj = new Object();
+
+			// 2차 분류 셀렉트 박스에 삽입할 데이터 준비
+			for (var i = 0; i < jsonData.length; i++) {
+
+				if (jsonData[i].level == "2") {
+					cate2Obj = new Object(); //초기화
+					cate2Obj.cateCode = jsonData[i].cateCode;
+					cate2Obj.cateName = jsonData[i].cateName;
+					cate2Obj.cateCodeRef = jsonData[i].cateCodeRef;
+
+					cate2Arr.push(cate2Obj);
+				}
+			}
+
+			var cate2Select = $("select.category2");
+
+			for (var i = 0; i < cate2Arr.length; i++) {
+				if (select_cateCodeRef == cate2Arr[i].cateCodeRef) {
+					if (select_cateCode == cate2Arr[i].cateCode) {
+						cate2Select
+								.append("<option value='" + select_cateCode + "' selected='selected'>"
+										+ select_cateName + "</option>");
+					} else {
+						cate2Select
+								.append("<option value='" + cate2Arr[i].cateCode + "'>"
+										+ cate2Arr[i].cateName + "</option>");
+					}
+				}
+			}
+
 		} else {
-		 $(".category1").val(select_cateCode);
-		 $(".category2").val(select_cateCode);
+			$(".category1").val(select_cateCode);
+			$(".category2").append("<option value='" + select_cateCode + "' selected='selected'>전체</option>");
 		}
-		
 	</script>
 
 </body>
