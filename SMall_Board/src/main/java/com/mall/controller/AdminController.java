@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mall.domain.CategoryVO;
 import com.mall.domain.GoodsVO;
+import com.mall.domain.GoodsViewVO;
 import com.mall.service.AdminService;
 
 import lombok.extern.log4j.Log4j;
@@ -62,8 +63,38 @@ public class AdminController {
 	@RequestMapping(value = "/goods/view", method = RequestMethod.GET)
 	public void getGoodsview(@RequestParam("n") int gdsNum, Model model) throws Exception {
 		log.info("GoodsView");
-		GoodsVO goods = adminService.goodsView(gdsNum);
+		GoodsViewVO goods = adminService.goodsView(gdsNum);
 		model.addAttribute("goods", goods);
+	}
+	
+	// 상품수정_get
+	@RequestMapping(value = "/goods/modify", method = RequestMethod.GET)
+	public void getGoodsModify(@RequestParam("n") int gdsNum, Model model) throws Exception {
+		log.info("GoodsModify");
+		GoodsViewVO goods = adminService.goodsView(gdsNum);
+		model.addAttribute("goods", goods);
+		
+		List<CategoryVO> category = null;
+		category = adminService.category();
+		model.addAttribute("category", JSONArray.fromObject(category));
+	}
+	
+	// 상품수정_post
+	@RequestMapping(value = "/goods/modify", method = RequestMethod.POST)
+	public String postGoodsModify(GoodsVO vo) throws Exception {
+		log.info("post GoodsModify");
+		adminService.goodsModify(vo);
+		
+		return "redirect:/admin/index";
+	}
+	
+	// 삭품삭제
+	@RequestMapping(value = "/goods/delete", method = RequestMethod.POST)
+	public String postGoodsDelete(@RequestParam("n") int gdsNum) throws Exception {
+		log.info("post GoodsDelete");
+		adminService.goodsDelete(gdsNum);
+		
+		return "redirect:/admin/index";
 	}
 
 }

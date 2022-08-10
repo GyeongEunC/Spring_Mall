@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mall.domain.CategoryVO;
 import com.mall.domain.GoodsVO;
+import com.mall.domain.GoodsViewVO;
 import com.mall.persistence.AdminDAO;
 
 @Service
@@ -32,8 +33,18 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public GoodsVO goodsView(int gdsNum) throws Exception {
+	public GoodsViewVO goodsView(int gdsNum) throws Exception {
 		return dao.goodsView(gdsNum);
+	}
+
+	@Override
+	public void goodsModify(GoodsVO vo) throws Exception {
+		dao.goodsModify(vo);
+	}
+
+	@Override
+	public void goodsDelete(int gdsNum) throws Exception {
+		dao.goodsDelete(gdsNum);
 	}
 
 }

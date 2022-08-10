@@ -22,9 +22,36 @@
 </select>
 
 <!-- 상품 상세페이지(조회) -->
-<select id="goodsView" resultType="com.mall.domain.GoodsVO">
-	select * from goods
-	where gdsNum = #{gdsNum}
+<!-- <select id="goodsView" resultType="com.mall.domain.GoodsVO"> -->
+<!-- 	select * from goods -->
+<!-- 	where gdsNum = #{gdsNum} -->
+<!-- </select> -->
+
+<!-- 상품 상세페이지(조회) + 카테고리 조인 -->
+<select id="goodsView" resultType="com.mall.domain.GoodsViewVO">
+	select
+		g.gdsNum, g.gdsName, g.cateCode, c.cateCodeRef, c.cateName, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate
+	from goods g
+	inner join goods_category c
+		on g.cateCode = c.cateCode
+	where g.gdsNum = #{gdsNum}	
 </select>
+
+<!-- 상품수정 -->
+<update id="goodsModify">
+	update goods
+	set gdsName = #{gdsName},
+		cateCode = #{cateCode},
+		gdsPrice = #{gdsPrice},
+		gdsStock = #{gdsStock},
+		gdsDes = #{gdsDes}
+	where gdsNum = #{gdsNum}
+</update>
+
+<!-- 상품삭제 -->
+<delete id="goodsDelete">
+	delete from goods
+	where gdsNum = #{gdsNum}
+</delete>
 
 </mapper>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mall.domain.CategoryVO;
 import com.mall.domain.GoodsVO;
+import com.mall.domain.GoodsViewVO;
 
 public interface AdminService {
 	
@@ -13,6 +14,10 @@ public interface AdminService {
 	
 	public List<GoodsVO> goodslist() throws Exception;
 	
-	public GoodsVO goodsView(int gdsNum) throws Exception;
+	public GoodsViewVO goodsView(int gdsNum) throws Exception;
+	
+	public void goodsModify(GoodsVO vo) throws Exception;
+	
+	public void goodsDelete(int gdsNum) throws Exception;
 
 }
