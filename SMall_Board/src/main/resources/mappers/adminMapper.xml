@@ -16,4 +16,9 @@
 	values(goods_seq.nextval, #{gdsName}, #{cateCode}, #{gdsPrice}, #{gdsStock}, #{gdsDes})
 </insert>
 
+<!-- 상품리스트 -->
+<select id="goodslist" resultType="com.mall.domain.GoodsVO">
+	select * from goods order by gdsNum desc
+</select>
+
 </mapper>

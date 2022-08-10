@@ -10,5 +10,7 @@ public interface AdminService {
 	public List<CategoryVO> category() throws Exception;
 	
 	public void register(GoodsVO vo) throws Exception;
+	
+	public List<GoodsVO> goodslist() throws Exception;
 
 }

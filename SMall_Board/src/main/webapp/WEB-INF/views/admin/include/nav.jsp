@@ -4,7 +4,7 @@
 
 <ul>
 <c:if test="${member != null}">
-	<li><a href="/"> 일반화면 </a></li>
+	<li><a href="/"> 사용자페이지 </a></li>
 	<li><a href="/member/signout"> 로그아웃 </a></li>
 </c:if>
 </ul>
