@@ -21,4 +21,10 @@
 	select * from goods order by gdsNum desc
 </select>
 
+<!-- 상품 상세페이지(조회) -->
+<select id="goodsView" resultType="com.mall.domain.GoodsVO">
+	select * from goods
+	where gdsNum = #{gdsNum}
+</select>
+
 </mapper>

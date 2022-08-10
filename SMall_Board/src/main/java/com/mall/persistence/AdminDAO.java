@@ -15,5 +15,8 @@ public interface AdminDAO {
 	
 	// 상품리스트
 	public List<GoodsVO> goodslist() throws Exception;
+	
+	// 상품 상세페이지(조회)
+	public GoodsVO goodsView(int gdsNum) throws Exception;
 
 }

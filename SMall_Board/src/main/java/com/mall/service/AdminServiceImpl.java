@@ -28,8 +28,12 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public List<GoodsVO> goodslist() throws Exception {
-		System.out.println("서비스");
 		return dao.goodslist();
+	}
+
+	@Override
+	public GoodsVO goodsView(int gdsNum) throws Exception {
+		return dao.goodsView(gdsNum);
 	}
 
 }
