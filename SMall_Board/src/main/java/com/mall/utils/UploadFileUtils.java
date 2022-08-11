@@ -6,16 +6,23 @@ import java.util.Calendar;
 import java.util.UUID;
 
 import org.springframework.util.FileCopyUtils;
+
+import lombok.extern.log4j.Log4j;
 import net.coobird.thumbnailator.Thumbnails;
 
+@Log4j
 public class UploadFileUtils {
 
-	static final int THUMB_WIDTH = 300;
-	static final int THUMB_HEIGHT = 300;
+	static final int THUMB_WIDTH = 600;
+	static final int THUMB_HEIGHT = 600;
 
 	public static String fileUpload(String uploadPath, String fileName, byte[] fileData, String ymdPath)
 			throws Exception {
 
+		log.info("경로 : " + uploadPath);
+		log.info("이름 : " + fileName);
+		log.info("** : " + fileData);
+		
 		UUID uid = UUID.randomUUID();
 
 		String newFileName = uid + "_" + fileName;

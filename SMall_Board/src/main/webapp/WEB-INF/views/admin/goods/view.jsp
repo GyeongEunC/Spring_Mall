@@ -195,10 +195,10 @@ button[type=button] {
 				
 				<div class="inputArea">
 					<label for="gdsImg"> 이미지 </label>
- 						<p> 원본 이미지 </p>
+ 						<p> 원본 이미지 : ${goods.gdsImg} </p>
  						<img src="${goods.gdsImg}" class="oriImg" />
  
- 						<p> 썸네일 </p>
+ 						<p> 썸네일 :${goods.gdsThumbImg} </p>
  						<img src="${goods.gdsThumbImg}" class="thumbImg" />
 				</div>
 				
